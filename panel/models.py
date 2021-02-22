@@ -77,4 +77,55 @@ def submission_delete1(sender, instance, **kwargs) :
 
 
 
+class Newsletter(models.Model) :
+
+    name = models.TextField(null=True, blank=True)
+    email = models.TextField(null=True, blank=True)
+    date = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self) :
+        return self.email
+
+
+
+class Instagram_Pic(models.Model) :
+
+    image1 = models.ImageField(upload_to="instagram", null=True, blank=True)
+
+    def __str__(self) :
+        return self.pk
+    
+@receiver(post_delete, sender=Instagram_Pic)
+def submission_delete2(sender, instance, **kwargs) :
+    instance.image1.delete(False)
+
+
+
+class Author(models.Model) :
+
+    name = models.TextField(null=True, blank=True)
+    intro = models.TextField(null=True, blank=True)
+    detail = models.TextField(null=True, blank=True)
+    image1 = models.ImageField(upload_to='author', null=True, blank=True)
+    image2 = models.ImageField(upload_to='author', null=True, blank=True)
+
+    def __str__(self) :
+        return "Author Profile " + str(self.pk)
+
+@receiver(post_delete, sender=Author)
+def submission_delete3(sender, instance, **kwargs) :
+    instance.image1.delete(False)
+    instance.image2.delete(False)
+
+
+class Author_SM(models.Model) :
+
+    fk = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
+    sm_name = models.CharField(max_length=150, null=True, blank=True)
+    sm_icon = models.CharField(max_length=150, null=True, blank=True)
+    sm_url  = models.TextField(null=True, blank=True)
+
+    def __str__(self) :
+        return self.sm_name
+
 

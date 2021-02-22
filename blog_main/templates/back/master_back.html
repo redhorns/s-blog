@@ -47,8 +47,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="{% static 'front/img/logo.jpg' %}" alt="Logo" style="max-width: 60px; padding-bottom: 30px; padding-top: 20px;"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{% static 'front/img/logo.jpg' %}" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="{% static 'back/images/levin.png' %}" alt="Logo" style="max-width: 60px; padding-bottom: 30px; padding-top: 20px;"></a>
+                <a class="navbar-brand hidden" href="./"><img src="{% static 'back/images/levin.png' %}" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse" >
@@ -78,7 +78,29 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa-th"></i>Manage</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_top_slider' %}">Top Slider</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_intro_1' %}">1. Main Post</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_intro_2' %}">2. Top Left Posts</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_intro_3' %}">3. Top Right Posts</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_intro_4' %}">4. Bottom Left Posts</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_intro_5' %}">5. Bottom Right Posts</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_most_popular' %}">Most Popular</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home_boss' %}">Boss Post</a></li>
                         </ul>
+                    </li>
+
+                    <h3 class="menu-title">Newsletter</h3>
+                    <li class="menu-icon">
+                        <a href="{% url 'newsletter_back' %}"> <i class="menu-icon fa fa-th"></i>Subscriber List</a>
+                    </li>
+
+                    <h3 class="menu-title">Instagram</h3>
+                    <li class="menu-icon">
+                        <a href="{% url 'instagram_list' %}"> <i class="menu-icon fa fa-th"></i>IG Pictures</a>
+                    </li>
+
+                    <h3 class="menu-title">Author-Profile</h3>
+                    <li class="menu-icon">
+                        <a href="{% url 'author_list' %}"> <i class="menu-icon fa fa-th"></i>Author-Profile List</a>
                     </li>
 
                     <h3 class="menu-title">Looper</h3>

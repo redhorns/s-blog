@@ -1,0 +1,224 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <!-- bootstrap for tags -->
+    <style>
+        .bootstrap-tagsinput {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            display: block;
+            padding: 4px 6px;
+            color: #555;
+            vertical-align: middle;
+            border-radius: 4px;
+            max-width: 100%;
+            line-height: 22px;
+            cursor: text;
+        }
+        .bootstrap-tagsinput input {
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0 6px;
+            margin: 0;
+            width: auto;
+            max-width: inherit;
+        }
+        .bootstrap-tagsinput .tag {
+            background: gray;
+            border: 1px solid;
+            padding: 0 6px;
+            margin-right: 2px;
+            color: white;
+            border-radius: 4px;
+            }
+    </style>
+
+{% endblock %}
+
+{% block page_content %}
+
+<div class="animated fadeIn">
+    <div class="row">
+
+        <!-- profile list -->
+        <div class="col-md-12">
+            <div class="card">
+
+                <!-- message -->
+                <div class="card-header">
+                    <strong class="card-title">Author-Profile List</strong>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="margin-top: 30px;">
+                                <strong> {{message}} </strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="card-body">
+                    <table id="bootstrap-data-table-export" class="dataa-table table table-striped table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th class="text-center">Index</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for author_back in author_back %}
+                            <tr>
+
+                                <td class="text-center">{{forloop.counter}}</td>
+
+                                <td class="text-center mobile-none">{{author_back.name | title}}</td>
+
+                                <td class="text-center">
+
+                                    <a href="{% url 'author_edit' auth_pk=author_back.pk %}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> Edit</button></a>
+                                    <a href="#"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#author_{{author_back.pk}}">Del  <i class="fa fa-times"></i></button></a>
+
+                                    <!-- Delete Confirm -->
+                                    <div class="modal fade bottom" id="author_{{author_back.pk}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-frame modal-bottom" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                            <div class="row d-flex justify-content-center align-items-center">
+
+                                                <p class="pt-3 pr-2">
+                                                This action will delete the Author-Profile <b>"{{author_back.name | title}}"</b> completely and it is
+                                                irreparable by nature. Once it is gone it is gone !
+                                                </p>
+
+                                                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Close</button>
+                                                <a href="{% url 'author_delete' auth_pk=author_back.pk %}"><button type="button" class="btn btn-dark"><b>Delete</b></button></a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- profile add -->
+        <div class="col-lg-12">
+            <div class="card">
+                
+                <div class="card-header">
+                    <strong>Author-Profile</strong> Add
+                </div>
+
+                <div class="card-body card-block">
+                    <form action="{% url 'author_add' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        {% csrf_token %}
+
+                        <div class="row form-group">
+                            <div class="col-12 col-md-2">
+                                <label for="name" class=" form-control-label">Name * :</label>
+                            </div>
+                            <div class="col col-md-4">
+                                <input type="text" id="name" name="name" placeholder="Add Title" class="form-control" required>
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="intro" class=" form-control-label">Intro :</label>
+                            </div>
+                            <div class="col-12 col-md-10" >
+                                <textarea name="intro" id="intro" rows="4" placeholder="Author Intro..." class="form-control" required></textarea>
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="detail" class=" form-control-label">Detail * :</label>
+                            </div>
+                            <div class="col-12 col-md-10" >
+                                <textarea name="detail" id="detail" rows="10" placeholder="Detail..." class="form-control"required ></textarea>
+                            </div>
+                            <div class="col col-md-1"></div>
+
+                            <script>
+                                CKEDITOR.replace( 'detail' );
+                            </script>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="image1" class=" form-control-label">Author Image * : </label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="file" id="image1" name="image1" class="form-control-file" required>
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="image2" class=" form-control-label">Author Signature : </label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="file" id="image2" name="image2" class="form-control-file">
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+                        
+                        <!-- Submit button -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Save</button>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footerblock %}
+    <!-- for tags -->
+    <script src="{% static 'back/assets/js/bootstrap-tagsinput.js' %}"></script>
+{% endblock %}

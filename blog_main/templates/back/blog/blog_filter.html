@@ -30,19 +30,22 @@
 
             <div class="col-md-12" style="margin: 5px 0px 20px 10px;">
               <div class="row form-group">
-                <div class="col-6 col-md-1">
+                
+                <div class="col-6 col-md-2">
                     <label for="special_blog" class=" form-control-label"><h5>Filter : </h5></label>
                 </div>
-                <div class="col-6 col-md-2">
-                    <select name="special_blog" id="special_blog" class="form-control" >
+
+                <div class="col-12 col-md-3">
+                    <select name="blog_filter" id="blog_filter" class="form-control" onChange="myNewFunction(this);" >
+                        <option value="">None</option>
                         {% for section in section %}
-                            <a href="{% url 'blog_filter' section.pk=section.pk %}">
-                              <option value="{{section.section_name}}">{{section.section_name | title}}</option>
-                            </a>
+                            <option value="{{section.pk}}">{{section.section_name | title}}</option>
                         {% endfor %}
                     </select>
                 </div>
+
                 <div class="col col-md-1"></div>
+
             </div>
             </div>
 
@@ -51,15 +54,15 @@
                     <div class="card-header">
                         <strong class="card-title">Blog List</strong>
                         {% if messages %}
-                          {% for message in messages %}
-                              <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 30px;">
-                                  <strong>Success!</strong> {{message}}
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                          {% endfor %}
-                      {% endif %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 30px;">
+                                    <strong>Success!</strong> {{message}}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="dataa-table table table-striped table-bordered">
@@ -68,17 +71,17 @@
                                 <tr>
                                     <th class="text-center">Index</th>
                                     <th class="text-center">Image</th>
-                                    <th class="text-center">Title</th>
+                                    <th class="text-center">Title - {% if blog_section %}[{{blog_section.section_name | title}}]{% endif %}</th>
                                     <th class="text-center mobile-none">Date</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {% for blog in blog %}
+                                {% for blog in blogs %}
                                 <tr>
 
-                                    <td class="text-center">{{blog.index}}</td>
+                                    <td class="text-center">{{forloop.counter}}</td>
 
                                     <td class="text-center">
                                         <img src="{% if blog.image_1 %}{{blog.image_1.url}}{% endif %}" alt="blog_img" loading="lazy" style="height: 40px;">
@@ -86,12 +89,6 @@
 
                                     <td class="text-center">
                                       {{blog.title}} 
-
-                                      {% if blog.section %}
-                                        <button type="button" class="btn btn-dark" style="padding: 1px 5px 1px 5px; font-size: 10px;">{{blog.section.section_name}}</button>
-                                      {% else %}
-                                        <button type="button" class="btn btn-dark" style="padding: 1px 5px 1px 5px; font-size: 10px;">None</button>
-                                      {% endif %}
                                     </td>
 
                                     <td class="text-center mobile-none">{{blog.date}}</td>
@@ -158,6 +155,18 @@
 		new SmartPhoto(".js-img-viewer");
         new SmartPhoto(".js-img-viewer-fit");
 	});
+</script>
+
+<script>
+    function myNewFunction(element) {
+
+        var box = document.getElementById("blog_filter");
+        var box_2 = box.options[box.selectedIndex].value;
+        console.log(box_2)
+
+        location.replace("/panel/filter_og/" + box_2 + "/")
+
+    }
 </script>
 
 {% endblock %}

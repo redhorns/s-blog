@@ -577,9 +577,12 @@
                 <div class="container">
                     <h3>Sign Up for Our <em>Newsletter</em></h3>
                     <p>Subscribe now to get notified about exclusive offers<br> from The .... every week!</p>
-                    <form class="navbar-form" role="search">
+                    <form action="{% url 'newsletter' %}" method="POST" enctype="multipart/form-data" class="navbar-form" role="search">
+                        {% csrf_token %}
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Your email address" name="q">
+                            <input name="name" id="name" type="text" class="form-control" placeholder="Your Name">
+                            <input name="email" id="email" type="text" class="form-control" placeholder="Your Email">
+                            <input name="path" id="path" type="text" class="form-control" value="{{request.get_full_path }}" style="display: none;">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit">Sign Up</button>
                             </div>

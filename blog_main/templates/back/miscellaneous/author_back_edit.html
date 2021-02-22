@@ -1,0 +1,167 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <!-- bootstrap for tags -->
+    <style>
+        .bootstrap-tagsinput {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            display: block;
+            padding: 4px 6px;
+            color: #555;
+            vertical-align: middle;
+            border-radius: 4px;
+            max-width: 100%;
+            line-height: 22px;
+            cursor: text;
+        }
+        .bootstrap-tagsinput input {
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0 6px;
+            margin: 0;
+            width: auto;
+            max-width: inherit;
+        }
+        .bootstrap-tagsinput .tag {
+            background: gray;
+            border: 1px solid;
+            padding: 0 6px;
+            margin-right: 2px;
+            color: white;
+            border-radius: 4px;
+            }
+    </style>
+
+{% endblock %}
+
+{% block page_content %}
+
+<div class="animated fadeIn">
+    <div class="row">
+
+        <!-- profile edit -->
+        <div class="col-lg-12">
+            <div class="card">
+                
+                <div class="card-header">
+                    <strong>Author-Profile</strong> Edit
+                </div>
+
+                <div class="card-body card-block">
+                    <form action="{% url 'author_edit' auth_pk=author_back.pk %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        {% csrf_token %}
+
+                        <div class="row form-group">
+                            <div class="col-12 col-md-2">
+                                <label for="name" class=" form-control-label">Name * :</label>
+                            </div>
+                            <div class="col col-md-4">
+                                <input type="text" id="name" name="name" placeholder="Add Title" class="form-control" value="{{author_back.name}}" required>
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="intro" class=" form-control-label">Intro :</label>
+                            </div>
+                            <div class="col-12 col-md-10" >
+                                <textarea name="intro" id="intro" rows="4" placeholder="Author Intro..." class="form-control" required>{{author_back.intro}}</textarea>
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="detail" class=" form-control-label">Detail * :</label>
+                            </div>
+                            <div class="col-12 col-md-10" >
+                                <textarea name="detail" id="detail" rows="10" placeholder="Detail..." class="form-control"required >{{author_back.detail}}</textarea>
+                            </div>
+                            <div class="col col-md-1"></div>
+
+                            <script>
+                                CKEDITOR.replace( 'detail' );
+                            </script>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="image1" class=" form-control-label">Author Image * : </label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="file" id="image1" name="image1" class="form-control-file">
+                                {% if author_back.image1 %}
+                                    <p><b>Selected : </b>{% if author_back.image1 %}{{author_back.image1.url}}{% endif %}</p>
+                                    <a href="{% if author_back.image1 %}{{author_back.image1.url}}{% endif %}" class="js-img-viewer-fit" data-caption="----" data-id="lion">
+                                        <img src="{% if author_back.image1 %}{{author_back.image1.url}}{% endif %}" alt="" style="height: 70px;">
+                                    </a>
+                                {% else %}
+                                    <p><b>Selected : </b>None</p>
+                                {% endif %}
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                <label for="image2" class=" form-control-label">Author Signature : </label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="file" id="image2" name="image2" class="form-control-file">
+                                {% if author_back.image2 %}
+                                    <p><b>Selected : </b>{% if author_back.image2 %}{{author_back.image2.url}}{% endif %}</p>
+                                    <a href="{% if author_back.image2 %}{{author_back.image2.url}}{% endif %}" class="js-img-viewer-fit" data-caption="----" data-id="lion">
+                                        <img src="{% if author_back.image2 %}{{author_back.image2.url}}{% endif %}" alt="" style="height: 70px;">
+                                    </a>
+                                {% else %}
+                                    <p><b>Selected : </b>None</p>
+                                {% endif %}
+                            </div>
+                            <div class="col col-md-1"></div>
+                        </div>
+
+                        <br>
+
+                        
+                        <!-- Submit button -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Save</button>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footerblock %}
+    <!-- for tags -->
+    <script src="{% static 'back/assets/js/bootstrap-tagsinput.js' %}"></script>
+{% endblock %}

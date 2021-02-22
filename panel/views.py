@@ -10,6 +10,8 @@ from datetime import datetime
 from django.utils.text import slugify
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
+from panel.models import Newsletter, Instagram_Pic, Author, Author_SM
 
 
 
@@ -355,36 +357,61 @@ def remove_blog_image(request, blog_pk) :
 
 @csrf_exempt 
 def blog_filter(request):
-    # request.is_ajax() also can be used with post checking to confirm its ajax req
-    if request.method == 'POST' : 
-        if request.method == 'POST':
-            name = request.POST.get('data')
+    # request.is_ajax() also can be used with post to check its ajax req.
+    if request.method == 'POST' :
 
-            print("====success=====", name)
+        sec_pk = request.POST.get('sec_pk', None)
 
-            return render(request, 'back/panel.html')
+        print("====success=====", sec_pk)
 
-            # return JsonResponse({
-            #     'name': 'success baby!!!'
-            # })
+        try :
+            blog_section = Blog_Section.objects.get(pk=sec_pk)
+        except :
+            return JsonResponse({
+                'data': 'Blog section not found'
+            })
 
-            # return HttpResponse(json.dumps(name), content_type="application/json")
-        else :
-            return render('ajax_test.html', locals())
+        blogs = Blog.objects.filter(section=blog_section)
+
+        # return JsonResponse({
+        #     'data': "Success babbby !!!"
+        # })
+
+        # return render(request, 'back/panel.html')
+
+        # blogs = serializers.serialize('json', blogs)
+
+        # return HttpResponse(json.dumps(blogs), content_type="application/json")
+
+    else :
+        return render('blog_list.html', locals())
 
 
     return render(request, 'back/temp.html')
 
-    # # blog_section = Blog_Section.objects.get(pk=section_pk)
 
-    # # blog = Blog.objects.filter(section=blog_section)
 
-    # # section = Blog_Section.objects.all()
+def blog_filter_og(request, sec_pk) :
 
-    # return render(request, 'back/blog_filter.html', {
-    #     # 'blog': blog,
-    #     # 'section': section,
-    # })
+    try :
+        blog_section = Blog_Section.objects.get(pk=sec_pk)
+    except :
+        msg = "Blog section not found !" + str(sec_pk)
+        messages.success(request, msg)
+
+        return redirect('blog_list')
+
+    blogs = Blog.objects.filter(section=blog_section)
+
+    section = Blog_Section.objects.all()
+
+    send = {
+        'blogs': blogs,
+        'section': section,
+        'blog_section': blog_section,
+    }
+
+    return render(request, 'back/blog/blog_filter.html', send)
 
 
 
@@ -545,6 +572,209 @@ def blog_section_edit(request, blog_sec_pk) :
     
     else :
         return HttpResponse("Section Object not found, try going back and refreshing the feed again !")
+
+
+# newsletter
+
+def newsletter_back(request) :
+
+    newsletter = Newsletter.objects.all().order_by('-pk')
+
+    send = {
+        'newsletter': newsletter,
+    }
+
+    return render(request, 'back/newsletter_back.html', send)
+
+
+def newsletter_delete(request, news_pk) :
+
+    try :
+        newsletter = Newsletter.objects.get(pk=news_pk)
+    except :
+        msg = "Subscriber could not be found"
+        messages.success(request, msg)
+
+        return redirect('newsletter_back')
+
+    newsletter.delete()
+
+    msg = "Subscriber removed from database successfully"
+    messages.success(request, msg)
+
+    return redirect('newsletter_back')
+
+
+
+# IG
+
+def instagram_list(request) :
+
+    instagram = Instagram_Pic.objects.all().order_by('-pk')
+
+    send = {
+        'instagram': instagram,
+    }
+
+    return render(request, 'back/miscellaneous/instagram.html', send)
+
+
+def instagram_add(request) :
+
+    if request.method == 'POST' :
+
+        image1 = request.FILES.get('image1', None)
+
+        instagram = Instagram_Pic(
+            image1 = image1,
+        )
+
+        instagram.save()
+
+        msg = "New image has been added successfully!"
+        messages.success(request, msg)
+
+        return redirect('instagram_list')
+
+
+    return redirect('instagram_list')
+
+
+def instagram_delete(request, ig_pk) :
+
+    try :
+        instagram = Instagram_Pic.objects.get(pk=ig_pk)
+    except :
+        msg = "Instagram picture object not found !"
+        messages.success(request, msg)
+
+        return redirect('instagram_back')
+
+    instagram.delete()
+
+    msg = "Instagram picture removed successfully !"
+    messages.success(request, msg)
+
+    return redirect('instagram_list')
+
+
+
+# author profile
+
+def author_list(request) :
+
+    author_back = Author.objects.all()
+
+    send = {
+        'author_back': author_back,
+    }
+
+    return render(request, 'back/miscellaneous/author_back.html', send)
+
+
+def author_add(request) :
+
+    if request.method == 'POST' :
+
+        name = request.POST.get('name', '')
+        intro = request.POST.get('intro', '')
+        detail = request.POST.get('detail', '')
+        image1 = request.FILES.get('image1', None)
+        image2 = request.FILES.get('image2', None)
+
+        author = Author(
+            name = name,
+            intro = intro,
+            detail = detail,
+            image1 = image1,
+            image2 = image2,
+
+        )
+
+        author.save()
+
+        msg = "New Author-Profile has been created successfully !"
+        messages.success(request, msg)
+
+
+        return redirect('author_list')
+
+
+    return redirect('author_list')
+
+
+def author_edit(request, auth_pk) :
+
+    if request.method == 'POST' :
+
+        try :
+            author_back = Author.objects.get(pk=auth_pk)
+        except :
+            msg = "Author-Profile not found !"
+            messages.success(request, msg)
+
+            return redirect('author_list')
+
+        name = request.POST.get('name', '')
+        intro = request.POST.get('intro', '')
+        detail = request.POST.get('detail', '')
+        image1 = request.FILES.get('image1', None)
+        image2 = request.FILES.get('image2', None)
+
+        if image1 != None :
+            if author_back.image1 :
+                default_storage.delete(author_back.image1.path)
+            author_back.image1 = image1
+
+        if image2 != None :
+            if author_back.image2 :
+                default_storage.delete(author_back.image2.path)
+            author_back.image2 = image2
+
+        author_back.name = name
+        author_back.intro = intro
+        author_back.detail = detail
+
+        author_back.save()
+
+        msg = "Author-Profiles has been updated successfully !"
+        messages.success(request, msg)
+
+
+        return redirect('author_list')
+
+
+    try :
+        author_back = Author.objects.get(pk=auth_pk)
+    except :
+        msg = "Author-Profile not found !"
+        messages.success(request, msg)
+
+        return redirect('author_list')
+
+    send = {
+        'author_back': author_back,
+    }
+
+    return render(request, 'back/miscellaneous/author_back_edit.html', send)
+
+
+def author_delete(request, auth_pk):
+
+    try :
+        author_back = Author.objects.get(pk=auth_pk)
+    except :
+        msg = "Author-Profile not found !"
+        messages.success(request, msg)
+
+        return redirect('author_list')
+
+    author_back.delete()
+
+    msg = "Author-Profile deleted successfully !"
+    messages.success(request, msg)
+
+    return redirect('author_list')
 
 
 

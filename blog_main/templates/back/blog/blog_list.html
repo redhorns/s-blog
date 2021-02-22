@@ -30,20 +30,20 @@
 
             <div class="col-md-12" style="margin: 5px 0px 20px 10px;">
               <div class="row form-group">
-                <div class="col-6 col-md-1">
+                <div class="col-6 col-md-2">
                     <label for="blog_filter" class=" form-control-label"><h5>Filter : </h5></label>
                 </div>
 
-                  <!-- <div class="col-6 col-md-6">
+                  <div class="col-12 col-md-3">
                       <select name="blog_filter" id="blog_filter" class="form-control" onChange="myNewFunction(this);" >
+                          <option value="">None</option>
                           {% for section in section %}
                               <option value="{{section.pk}}">{{section.section_name | title}}</option>
                           {% endfor %}
                       </select>
                   </div>
-                  <div class="col col-md-1"></div> -->
-
-                  <button class="up-arrow">Up Arrow</button>
+                  <div class="col col-md-1"></div>
+                  <!-- <button class="up-arrow">Up Arrow</button> -->
             </div>
             </div>
 
@@ -54,7 +54,7 @@
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 30px;">
-                                    <strong>Success!</strong> {{message}}
+                                    <strong></strong> {{message}}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -139,6 +139,7 @@
 
 {% block footerblock %}
 
+<script src="{% static 'back/vendors/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'back/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'back/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
 <script src="{% static 'back/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
@@ -167,12 +168,13 @@
 
 // function myNewFunction(element) {
 //     var box = document.getElementById("blog_filter");
-//     box_2 = box.options[box.selectedIndex].value;
+//     var box_2 = box.options[box.selectedIndex].value;
 //     var text = element.options[element.selectedIndex].text;
 //     console.log(box_2)
 //     console.log(text)
 
-//     var post_url = "{% url 'blog_filter' section_pk=" + box_2 + " }" 
+//     // var post_url = "{% url 'blog_filter' section_pk=" + box_2 + " }"
+//     var post_url = "/panel/filter/"
 //     console.log(post_url)
 
 
@@ -180,14 +182,25 @@
 //       type: "POST",
 //       url: post_url,
 //       data: {
-//         blog_filter: box_2,
+//         sec_pk: "2",
 //       },
+//       // dataType: 'json',
 //       success: function(data) {
 //         // Stuff
 //         console.log("success baby !!!")
+//         console.log(data)
 //       }
 //     });
 // }
+
+function myNewFunction(element) {
+
+    var box = document.getElementById("blog_filter");
+    var box_2 = box.options[box.selectedIndex].value;
+    console.log(box_2)
+
+    location.replace("/panel/filter_og/" + box_2 + "/")
+}
   
 
 </script>

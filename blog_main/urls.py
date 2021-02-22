@@ -8,4 +8,6 @@ urlpatterns = [
     url(r"^category/$", views.category, name="category"),
     url(r"^detail/$", views.detail, name="detail"),
 
+    url(r"^newsletter/$", views.newsletter, name="newsletter"),
+
 ]

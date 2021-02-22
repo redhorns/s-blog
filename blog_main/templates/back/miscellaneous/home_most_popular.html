@@ -1,0 +1,163 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}">
+
+    <link href="{% static 'vendor/mdb/mdb.min.css' %}" rel="stylesheet">
+
+    <!-- smart photo -->
+    <link href="{% static 'back/vendors/smart-photo/smartphoto.min.css' %}" rel="stylesheet">
+
+
+    <style>
+      @media(max-width: 768px){
+        .mobile-none{
+          display: none;
+        }
+      }
+    </style>
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <!-- slider add -->
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <strong>Most Popular - Add (4)</strong>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="margin-top: 30px;">
+                                    <strong> {{message}} </strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body card-block">
+
+                        <form action="{% url 'home_most_popular_add' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            {% csrf_token %}
+        
+                            <div class="row form-group">
+                                <div class="col-3 col-md-3">
+                                    <label for="section" class=" form-control-label">Blog Title * : </label>
+                                </div>
+                                <div class="col-9 col-md-8">
+                                    <select name="blog_pk" id="blog_pk" class="form-control" required>
+                                        <option value="">None</option>
+                                        {% for blog in blog %}
+                                        <option value="{{blog.pk}}">{{blog.title | truncatechars:65}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col col-md-1"></div>
+                            </div>
+        
+                            <br>
+        
+                            <!-- Submit button -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Add
+                                </button>
+                            </div>
+        
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- slider list -->
+            <div class="col-md-12">
+                <div class="card">
+
+                    <!-- message -->
+                    <div class="card-header">
+                        <strong class="card-title">Most Popular List</strong>
+                    </div>
+
+                    <div class="card-body">
+                        <table id="bootstrap-data-table-export" class="dataa-table table table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Index</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for most_popular in most_popular %}
+                                <tr>
+
+                                    <td class="text-center">{{forloop.counter}}</td>
+
+                                    <td class="text-center mobile-none">{% if most_popular.blog %}{{most_popular.blog.title}}{% endif %}</td>
+
+                                    <td class="text-center">
+
+                                        <a href="{% url 'home_most_popular_delete' most_popular_pk=most_popular.pk %}"><button type="button" class="btn btn-danger btn-sm">Remove <i class="fa fa-times"></i></button></a>
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footerblock %}
+
+<script src="{% static 'back/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+
+<script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'back/assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'vendor/mdb/mdb.min.js' %}"></script>
+
+<!-- smart photo -->
+<script src="{% static 'back/vendors/smart-photo/smartphoto.js' %}"></script>
+
+<script>
+	window.addEventListener('load',function(){
+		new SmartPhoto(".js-img-viewer");
+        new SmartPhoto(".js-img-viewer-fit");
+	});
+</script>
+
+<script>
+  
+
+</script>
+
+{% endblock %}
