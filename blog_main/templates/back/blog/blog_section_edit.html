@@ -1,0 +1,198 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}">
+
+    <!-- image viewer -->
+    <script src="{% static 'back/assets/js/EZView.js' %}"></script>
+    <script src="{% static 'back/assets/js/draggable.js' %}"></script>
+
+    <!-- bootstrap for tags -->
+    <style>
+        .bootstrap-tagsinput {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            display: block;
+            padding: 4px 6px;
+            color: #555;
+            vertical-align: middle;
+            border-radius: 4px;
+            max-width: 100%;
+            line-height: 22px;
+            cursor: text;
+        }
+        .bootstrap-tagsinput input {
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0 6px;
+            margin: 0;
+            width: auto;
+            max-width: inherit;
+        }
+        .bootstrap-tagsinput .tag {
+            background: gray;
+            border: 1px solid;
+            padding: 0 6px;
+            margin-right: 2px;
+            color: white;
+            border-radius: 4px;
+            }
+    </style>
+    
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Section Edit</strong>
+                    </div>
+                    <div class="card-body">
+                                                
+                        <form action="{% url 'blog_section_edit' section.pk %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            {% csrf_token %}
+
+                            <h3>[ Edit Section Here ] </h3> <br><br>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-3">
+                                    <label for="index" class=" form-control-label">Index : </label>
+                                </div>
+                                <div class="col col-md-2">
+                                    <input type="number" id="index" name="index" placeholder="Add Index" class="form-control" value="{{section.index}}">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-3">
+                                    <label for="section_name" class=" form-control-label">Section Name : </label>
+                                </div>
+                                <div class="col col-md-6">
+                                    <input type="text" id="section_name" name="section_name" placeholder="Add Section Name" class="form-control" value="{{section.section_name}}">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-3">
+                                    <label for="section_info" class=" form-control-label">Section Info : </label>
+                                </div>
+                                <div class="col col-md-6">
+                                    <textarea name="section_info" id="section_info" cols="30" rows="5"  class="form-control" placeholder="Add Section Info">{{section.section_info}}</textarea>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="image_1" class=" form-control-label">Section Banner * : </label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="file" id="image_1" name="image_1" class="form-control-file" value="{% if section.image_1 %}{{section.image_1.url}}{% endif %}">
+                                    {% if section.image_1 %}
+                                        <p><b>Selected : </b>{% if section.image_1 %}{{section.image_1.url}}{% endif %}</p>
+                                        <a href="{% if section.image_1 %}{{section.image_1.url}}{% endif %}" class="js-img-viewer-fit" data-caption="Jd Future+" data-id="lion">
+                                            <img src="{% if section.image_1 %}{{section.image_1.url}}{% endif %}" alt="" style="height: 70px;">
+                                        </a>
+                                    {% else %}
+                                        <p><b>Selected : </b>None</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col col-md-1"></div>
+                            </div>
+
+                            <br>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="image_2" class=" form-control-label">Section Icon * : </label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="file" id="image_2" name="image_2" class="form-control-file" value="{% if section.image_2 %}{{section.image_2.url}}{% endif %}">
+                                    {% if section.image_2 %}
+                                        <p><b>Selected : </b>{% if section.image_2 %}{{section.image_2.url}}{% endif %}</p>
+                                        <a href="{% if section.image_2 %}{{section.image_2.url}}{% endif %}" class="js-img-viewer-fit" data-caption="Jd Future+" data-id="lion">
+                                            <img src="{% if section.image_2 %}{{section.image_2.url}}{% endif %}" alt="" style="height: 70px;">
+                                        </a>
+                                    {% else %}
+                                        <p><b>Selected : </b>None</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col col-md-1"></div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-3">
+                                    <label for="meta_title" class=" form-control-label">Meta Title : </label>
+                                </div>
+                                <div class="col col-md-6">
+                                    <input type="text" id="meta_title" name="meta_title" placeholder="Add Meta Title" class="form-control" value="{{section.meta_title}}">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-3">
+                                    <label for="meta_description" class=" form-control-label">Meta Description : </label>
+                                </div>
+                                <div class="col col-md-6">
+                                    <textarea name="meta_description" id="meta_description" cols="30" rows="5"  class="form-control" placeholder="Add Meta Description">{{section.meta_description}}</textarea>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3"></div>
+                                <div class="col col-md-2">
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i>&nbsp; Update</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footerblock %}
+
+<script src="{% static 'back/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+
+<script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'back/assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
+
+<!-- for tags -->
+<script src="{% static 'back/assets/js/bootstrap-tagsinput.js' %}"></script>
+
+<script>
+    $('.gallery1').EZView();
+    $('.gallery2').EZView();
+</script>
+
+{% endblock %}

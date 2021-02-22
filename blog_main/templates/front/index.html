@@ -1,0 +1,613 @@
+{% extends 'front/master.html' %}
+
+{% load static %}
+
+
+
+
+{% block headblock %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>OSRU - News, Blog & Magazine HTML Template</title>
+    <link href="{% static 'front/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'front/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/animsition.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/themify-icons/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/bootsnav.css' %}" rel="stylesheet">
+    <link href="{% static 'front/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'front/owl-carousel/owl.theme.css' %}" rel="stylesheet">
+    <link href="{% static 'front/owl-carousel/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/fluidbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/style.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+{% block page_content %}
+
+    <!-- news masonry -->
+    <div class="news-masonry">
+        <div class="container">
+            <div class="row mas-m">
+                <div class="col-sm-6 mas-p">
+
+                    <div class="mas-item mas-big">
+                        <a href="#"><figure><img src="{% static 'front/img/masonry/568x450-01.jpg' %}" class="img-responsive" alt=""></figure></a>
+                        <div class="mas-text">
+                            <div class="post-cat"><a href="#">Fashion</a></div>
+                            <h2 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader will be distracted by the readable content</a></h2>
+                            <div class="mas-details">
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+                                <a href="#" class="read-more">Read More &#8702;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 mas-p">
+                    <div class="row mas-m">
+
+                        <div class="col-xs-6 col-sm-6 mas-p">
+                            <div class="masonry-slide1 owl-carousel owl-theme">
+
+                                <div class="item mas-m-b">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-01.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>Lorem ipsum dolor sit Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate cumque eaque accusantium non beatae dignissimos eveniet nesciunt. Quis aspernatur, odit nulla libero placeat magni sit corporis, sequi minima iste quasi. Aspernatur, praesentium. Vel, dolor. Pariatur molestiae minus ut explicabo odit possimus quos blanditiis commodi iste reiciendis, voluptatum quae. Similique, earum. amet, consectetur adipisicing elit. Unde, corporis. are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item mas-m-b">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-02.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many djnsdhhhhhhhhhhsd sdihdsihdsudhs dsihdshds dsihdsuhdusdsds d sihdshdsdsdn sidhsidhsihdsuhds dishdsuhdshdushdushd  variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 mas-p">
+                            <div class="masonry-slide2 owl-carousel owl-theme">
+
+                                <div class="item">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-03.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-04.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="hidden-xs row mas-m">
+
+                        <div class="col-sm-6 mas-p">
+                            <div class="masonry-slide3 owl-carousel owl-theme">
+
+                                <div class="item">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-05.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-06.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6 mas-p">
+                            <div class="masonry-slide4 owl-carousel owl-theme">
+
+                                <div class="item">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-07.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.End of masonry item -->
+                                </div>
+
+                                <div class="item">
+                                    <div class="mas-item masonry-sm">
+                                        <a href="#"><figure><img src="{% static 'front/img/masonry/282x223-08.jpg' %}" class="img-responsive" alt=""></figure></a>
+                                        <div class="mas-text">
+                                            <div class="post-cat"><a href="#">Fashion</a></div>
+                                            <h4 class="mas-title"><a href="#">It is a long <em>established</em> fact that a reader</a></h4>
+                                            <div class="mas-details">
+                                                <p>There are many variations of passages of Lorem Ipsum available</p>
+                                                <a href="#" class="read-more">Read More &#8702;</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.End of masonry item -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+
+        <!-- title/right-sidebar -->
+        <div class="container">
+            <div class="row">
+
+                <main class="col-xs-12 col-sm-8 col-md-9 col-lg-9 col-xl-10 content p_r_40">
+                    <article class="grid_post grid_post_lg text-center">
+                        <figure>
+                            <a href="#" class="grid_image"><img src="{% static 'front/img/825x630-2.jpg' %}" class="img-responsive" alt=""></a>
+                            <figcaption>
+                                <div class="post-cat"><span>In</span> <a href="#">Lifestyle</a></div>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <h3 class="grid_post_title"><a href="#">It is a long established fact that a reader will be distracted by the readable content.</a></h3>
+                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                                    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content 
+                                    here, content here', making it look like readable English.</p>
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <!-- /.End of grid post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-1.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Fashion</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-2.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Lifestyle</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-3.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Travel</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-4.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Fashion</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-5.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Lifestyle</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-6.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Fashion</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <div class="media meida-md">
+                        <div class="media-left">
+                            <a href="#"><img src="{% static 'front/img/370x300-7.jpg' %}" class="media-object" alt=""></a>
+                        </div>
+                        <!-- /.Post image -->
+                        <div class="media-body">
+                            <div class="post-header">
+                                <div class="post-cat"><span>In</span> <a href="#">Lifestyle</a></div>
+                                <h3 class="media-heading"><a href="#">It is a long <em>established fact</em> that a reader will be distracted.</a></h3>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span> 
+                                    <span class="comment-link"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>9 Comments</a></span>
+                                </div>
+                                <!-- /.Post meta -->
+                            </div>
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
+                            <div class="element-block">
+                                <a href="#" class="btn link-btn btn-outline btn-rounded">Reading &#8702;</a>
+                                <!-- /.Post button -->
+                                <div class="post_share">
+                                    <a class="smedia facebook fa fa-facebook" href="#"></a>
+                                    <a class="smedia twitter fa fa-twitter" href="#"></a>
+                                    <a class="smedia googleplus fa fa-google-plus" href="#"></a>
+                                </div>
+                                <!-- /.Post social share -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.End of media post -->
+                    <!--                            <div class="loadmore_block"> 
+                                                    <a href="#" class=""> Load More</a> 
+                                                </div>-->
+                    <!-- /.End of Load more -->
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">&#8701;</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="page-numbers"><span>...</span></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&#8702;</a></li>
+                    </ul>
+                    <!-- /.End of pagination -->
+                </main>
+
+                <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-3 col-xl-2 rightSidebar">
+
+                    <!-- popular posts -->
+                    <div class="latest_post_widget">
+                        <div class="title-holder">
+                            <h3 class="title">Most Popular</h3>
+                            <span class="title-shape title-shape-dark"></span>
+                        </div>
+
+                        <!-- item -->
+                        <div class="media latest_post">
+                            <a class="media-left" href="#">
+                                <img src="{% static 'front/img/100x70-1.jpg' %}" class="media-object" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h6 class="media-heading"><a href="#">The <em>Best Street-Style</em> Pics Copenhagen</a></h6>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="media latest_post">
+                            <a class="media-left" href="#">
+                                <img src="{% static 'front/img/100x70-2.jpg' %}" class="media-object" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h6 class="media-heading"><a href="#">The <em>Best Street-Style</em> Pics Copenhagen</a></h6>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="media latest_post">
+                            <a class="media-left" href="#">
+                                <img src="{% static 'front/img/100x70-3.jpg' %}" class="media-object" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h6 class="media-heading"><a href="#">The <em>Best Street-Style</em> Pics Copenhagen</a></h6>
+                                <div class="entry-meta">
+                                    <span class="entry-date"><i class="fa fa-calendar-o" aria-hidden="true"></i><time datetime="2018-01-21T19:00">Jan 21, 2018</time></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- follow us -->
+                    <div class="social_share_btn">
+                        <!-- title -->
+                        <div class="title-holder">
+                            <h3 class="title">Follow Us</h3>
+                            <span class="title-shape title-shape-dark"></span>
+                        </div>
+
+                        <ul>
+                            <li class="li-facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
+                            <li class="li-twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
+                            <li class="li-google-plus"><a href="#" target="_blank"><i class="fa fa-google-plus"></i> Google +</a></li>
+                            <li class="li-pinterest"><a href="#" target="_blank"><i class="fa fa-pinterest-p"></i> Pinterest</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- ad -->
+                    <!-- <div class="banner-content">
+                        <img src="{% static 'front/img/ad-300x250-1.png' %}" class="img-responsive center-block" alt="">
+                    </div> -->
+
+                    <!-- category -->
+                    <div class="category_widget">
+
+                        <!-- title -->
+                        <div class="title-holder">
+                            <h3 class="title">Category</h3>
+                            <span class="title-shape title-shape-dark"></span>
+                        </div>
+
+                        <!-- item -->
+                        <a class="category" href="#">
+                            <figure><img src="{% static 'front/img/category-1.jpg' %}" class="img-responsive" alt=""></figure>
+                            <div class="category_name">Fashion</div>
+                        </a>
+
+                        <a class="category" href="#">
+                            <figure><img src="{% static 'front/img/category-2.jpg' %}" class="img-responsive" alt=""></figure>
+                            <div class="category_name">Travel</div>
+                        </a>
+
+                        <a class="category" href="#">
+                            <figure><img src="{% static 'front/img/category-3.jpg' %}" class="img-responsive" alt=""></figure>
+                            <div class="category_name">Life Style</div>
+                        </a>
+
+                    </div>
+
+                </aside>
+
+            </div>
+        </div>
+
+        <!-- ad -->
+        <!-- <div class=" container">
+            <div class="height_15"></div>
+            <div class="banner-content">
+                <img src="{% static 'front/img/ad-728x90-1.png' %}" class="img-responsive center-block" alt="">
+            </div>
+        </div> -->
+
+    </div>
+
+{% endblock %}
+
+
+
+{% block footerblock  %}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'front/js/jquery.min.js' %}"></script>
+    <script src="{% static 'front/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'front/js/animsition.min.js' %}"></script>
+    <script src="{% static 'front/js/bootsnav.js' %}"></script>
+    <script src="{% static 'front/js/macy.js' %}"></script>
+    <script src="{% static 'front/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'front/js/ResizeSensor.min.js' %}"></script>
+    <script src="{% static 'front/js/theia-sticky-sidebar.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'front/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'front/js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'front/js/jquery.gridrotator.min.js' %}"></script>
+    <script src="{% static 'front/js/parallax-background.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.simpleSocialShare.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.fluidbox.min.js' %}"></script>
+    <script src="{% static 'front/js/retina.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.shuffle.min.js' %}"></script>
+    <script src="{% static 'front/js/readingTime.min.js' %}"></script>
+    <script src="{% static 'front/js/custom.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            'use strict';
+            //Grid content 
+            var masonry = new Macy({
+                container: '.grid-content',
+                trueOrder: false,
+                waitForImages: false,
+                useOwnImageLoader: false,
+                debug: true,
+                mobileFirst: true,
+                columns: 1,
+                margin: 30,
+                breakAt: {
+                    1200: 2,
+                    992: 2,
+                    768: 2,
+                    480: 2
+                }
+            });
+        });
+    </script>
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,163 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}">
+
+    <link href="{% static 'vendor/mdb/mdb.min.css' %}" rel="stylesheet">
+
+    <!-- smart photo -->
+    <link href="{% static 'back/vendors/smart-photo/smartphoto.min.css' %}" rel="stylesheet">
+
+
+    <style>
+      @media(max-width: 768px){
+        .mobile-none{
+          display: none;
+        }
+      }
+    </style>
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12" style="margin: 5px 0px 20px 10px;">
+              <div class="row form-group">
+                <div class="col-6 col-md-1">
+                    <label for="special_blog" class=" form-control-label"><h5>Filter : </h5></label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <select name="special_blog" id="special_blog" class="form-control" >
+                        {% for section in section %}
+                            <a href="{% url 'blog_filter' section.pk=section.pk %}">
+                              <option value="{{section.section_name}}">{{section.section_name | title}}</option>
+                            </a>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col col-md-1"></div>
+            </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Blog List</strong>
+                        {% if messages %}
+                          {% for message in messages %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 30px;">
+                                  <strong>Success!</strong> {{message}}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table-export" class="dataa-table table table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Index</th>
+                                    <th class="text-center">Image</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center mobile-none">Date</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for blog in blog %}
+                                <tr>
+
+                                    <td class="text-center">{{blog.index}}</td>
+
+                                    <td class="text-center">
+                                        <img src="{% if blog.image_1 %}{{blog.image_1.url}}{% endif %}" alt="blog_img" loading="lazy" style="height: 40px;">
+                                    </td>
+
+                                    <td class="text-center">
+                                      {{blog.title}} 
+
+                                      {% if blog.section %}
+                                        <button type="button" class="btn btn-dark" style="padding: 1px 5px 1px 5px; font-size: 10px;">{{blog.section.section_name}}</button>
+                                      {% else %}
+                                        <button type="button" class="btn btn-dark" style="padding: 1px 5px 1px 5px; font-size: 10px;">None</button>
+                                      {% endif %}
+                                    </td>
+
+                                    <td class="text-center mobile-none">{{blog.date}}</td>
+
+                                    <td class="text-center">
+                                        <a href="{% url 'blog_edit' blog.pk %}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> Edit</button></a>
+                                        <a href="#"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#blog_{{blog.pk}}">Del  <i class="fa fa-times"></i></button></a>
+
+                                        <!-- Delete Confirm -->
+                                        <div class="modal fade bottom" id="blog_{{blog.pk}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-frame modal-bottom" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-body">
+                                                <div class="row d-flex justify-content-center align-items-center">
+
+                                                  <p class="pt-3 pr-2">
+                                                    This action will delete the Blog <b>"{{blog.title | truncatechars:29}}"</b> completely and it is
+                                                    irreparable by nature. Once it is gone it is gone !
+                                                  </p>
+
+                                                  <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Close</button>
+                                                  <a href="{% url 'blog_delete' blog.pk %}"><button type="button" class="btn btn-dark"><b>Delete</b></button></a>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                  </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footerblock %}
+
+<script src="{% static 'back/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+
+<script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'back/assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'vendor/mdb/mdb.min.js' %}"></script>
+
+<!-- smart photo -->
+<script src="{% static 'back/vendors/smart-photo/smartphoto.js' %}"></script>
+
+<script>
+	window.addEventListener('load',function(){
+		new SmartPhoto(".js-img-viewer");
+        new SmartPhoto(".js-img-viewer-fit");
+	});
+</script>
+
+{% endblock %}

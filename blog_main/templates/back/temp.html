@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" name="myTextArea" id="myTextArea" value="Dude, its rocking !">
+
+    <button id="tn1">Not An Usual Submit Button</button>
+
+
+
+
+
+    <script src="{% static 'back/vendors/jquery/dist/jquery.min.js' %}"></script>
+
+    <script>
+
+        $("#tn1").click(function(){
+            var message = $("#myTextArea").val();
+            console.log(message);
+            window.location.href = '/url-path'; 
+        });
+
+
+        // $("#tn1").click(function(){
+        //     // for form submission, use $('#form').serialize() in data
+        //     var csrfToken = $( "input[name='csrfmiddlewaretoken']");
+        //     var message = $("#myTextArea").val();
+        //     console.log(message)
+        //     $.ajax({ 
+        //         headers: {'X-CSRFToken': '{{ csrf_token }}'},
+        //         url: "{% url 'blog_filter' %}",
+        //         type: "POST",
+        //         dataType: "json",
+        //         data: {
+        //             'data':message, 
+        //         },
+        //         cache: false,
+        //         success: function(data){
+        //             console.log(data.name)
+        //             // window.location.href = '/url-path'+data.name; 
+        //         }
+        //     }).done(function(data) {
+        //         if (data.result === true){
+        //             alert(data.message);
+        //         }
+        //     });
+        // });
+
+
+        // $(document).ready(function() {
+
+        //     $('.up-arrow').click(function() {
+
+        //         console.log('click')
+        //         $ajax({
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'X-CSRFToken': getCookie('csrftoken')
+        //             },
+        //             url: 'panel/filter',
+        //             type: 'POST',
+        //             data: JSON.stringify({'dane': 123456789101112}),
+        //             success: function(data) {
+        //                 alert("success")
+        //             },
+        //             error: function() {
+        //                 alert("fail")
+        //             }
+
+        //         })
+        //         return false
+                
+
+        //     });
+
+        // })
+
+
+
+    </script>
+
+
+
+
+    
+</body>
+</html>

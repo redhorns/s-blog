@@ -1,0 +1,309 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <!-- bootstrap for tags -->
+    <style>
+        .bootstrap-tagsinput {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            display: block;
+            padding: 4px 6px;
+            color: #555;
+            vertical-align: middle;
+            border-radius: 4px;
+            max-width: 100%;
+            line-height: 22px;
+            cursor: text;
+        }
+        .bootstrap-tagsinput input {
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0 6px;
+            margin: 0;
+            width: auto;
+            max-width: inherit;
+        }
+        .bootstrap-tagsinput .tag {
+            background: gray;
+            border: 1px solid;
+            padding: 0 6px;
+            margin-right: 2px;
+            color: white;
+            border-radius: 4px;
+            }
+    </style>
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Blog</strong> Edit
+            </div>
+
+
+            {% if blog %}
+
+            <div class="card-body card-block">
+                <form action="{% url 'blog_edit' blog.pk %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                    
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="index" class=" form-control-label">Index * :</label>
+                        </div>
+                        <div class="col col-md-2">
+                            <input type="number" id="index" name="index" placeholder="Add Index" class="form-control" value="{{blog.index}}" required>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="section" class=" form-control-label">Section * : </label>
+                        </div>
+                        <div class="col col-md-3">
+                            <select name="section" id="section" class="form-control" required>
+                                <option value="{% if blog.section %}{{blog.section.pk}}{% endif %}" selected>SELECTED : {% if blog.section %} {{blog.section.section_name | title}} {% endif %}</option>
+                                {% if section %}
+                                    {% for section in section %}
+                                        <option value="{{section.pk}}">{{section.section_name | title}}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="title" class=" form-control-label">Title * :</label>
+                        </div>
+                        <div class="col col-md-10">
+                            <input type="text" id="title" name="title" placeholder="Add Title" class="form-control" value="{{blog.title}}" >
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            <label for="intro" class=" form-control-label">Intro :</label>
+                        </div>
+                        <div class="col-12 col-md-10" >
+                            <textarea name="intro" id="intro" rows="4" placeholder="Blog Intro..." class="form-control">{{blog.intro}}</textarea>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            <label for="detail" class=" form-control-label">Detail * :</label>
+                        </div>
+                        <div class="col-12 col-md-10" >
+                            <textarea name="detail" id="detail" rows="10" placeholder="Detail..." class="form-control">{{blog.detail}}</textarea>
+                        </div>
+                        <div class="col col-md-1"></div>
+
+                        <script>
+                            CKEDITOR.replace( 'detail' );
+                        </script>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            <label for="image_1" class=" form-control-label">Banner Image * : </label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="file" id="image_1" name="image_1" class="form-control-file" value="{% if blog.image_1 %}{{blog.image_1.url}}{% endif %}">
+                            {% if blog.image_1 %}
+                                <p><b>Selected : </b>{% if blog.image_1 %}{{blog.image_1.url}}{% endif %}</p>
+                                <a href="{% if blog.image_1 %}{{blog.image_1.url}}{% endif %}" class="js-img-viewer-fit" data-caption="----" data-id="lion">
+                                    <img src="{% if blog.image_1 %}{{blog.image_1.url}}{% endif %}" alt="" style="height: 70px;">
+                                </a>
+                            {% else %}
+                                <p><b>Selected : </b>None</p>
+                            {% endif %}
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>                    
+                    
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="image_credit" class=" form-control-label">Pic Credit :</label>
+                        </div>
+                        <div class="col col-md-10">
+                            <input type="text" id="image_credit" name="image_credit" placeholder="Add Pic Credit" class="form-control" value="{{blog.image_credit}}">
+                            <p style="font-size: 10px;">** only if you took image from google or any other site **</p>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="read_duration" class=" form-control-label">Read Duration :</label>
+                        </div>
+                        <div class="col col-md-3">
+                            <input type="number" id="read_duration" name="read_duration" placeholder="Add Read Duration" class="form-control" value="{{blog.read_duration}}">
+                            <p style="font-size: 10px;">** Minutes **</p>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="tags" class="form-control-label">Tags : </label>
+                        </div>
+                        <div class="col col-md-9">
+                            <input type="text" id="tags" name="tags" placeholder="Add Tags" class="form-control" data-role="tagsinput" value="{{blog.tags}}">
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="special_blog" class=" form-control-label">Special Blog : </label>
+                        </div>
+                        <div class="col col-md-3">
+                            <select name="special_blog" id="special_blog" class="form-control" >
+                                {% if blog.special_blog == True %}
+                                <option value="True" selected>Selected : Yoo !</option>
+                                <option value="False">Nah, I'm good</option>
+                                {% elif blog.special_blog == False %}
+                                <option value="False" selected>Selected : Nah, I'm good</option>
+                                <option value="True">Yoo !</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            <label for="special_image" class=" form-control-label">Special Image :</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="file" id="special_image" name="special_image" class="form-control-file" value="{% if blog.special_image %}{{blog.special_image.url}}{% endif %}">
+                            {% if blog.special_image %}
+                            <p><b>Selected : </b>{{blog.special_image.url}}</p>
+                            <a href="{% if blog.special_image %} {{blog.special_image.url}} {% endif %}" class="js-img-viewer-fit" data-caption="Jd Future+" data-id="lion">
+                                <img src="{% if blog.special_image %} {{blog.special_image.url}} {% endif %}" alt="" style="height: 70px;">
+                            </a>
+                            {% else %}
+                                <p><b>Selected : </b>None</p>
+                            {% endif %}
+                            
+                            <p style="font-size: 10px;">** Select only if you want to make this blog appear special (just like you) on Blog Section page **</p>
+                            
+                            <br>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="date" class=" form-control-label">Date : </label>
+                        </div>
+                        <div class="col col-md-3">
+                            <input type="text" id="date" name="date" placeholder="Add Date" class="form-control" value="{{blog.date}}">
+                            <p style="font-size: 10px;">** i.e. ( June 14, 1998 ) **</p>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <hr>
+                    <h6 class="text-center">META</h6>
+                    <hr>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="meta_title" class=" form-control-label">Meta Title :</label>
+                        </div>
+                        <div class="col col-md-2">
+                            <input type="text" id="meta_title" name="meta_title" placeholder="Add Meta Title" class="form-control" value="{{blog.meta_title}}">
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+                    <br>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="meta_description" class=" form-control-label">Meta Description :</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <textarea name="meta_description" id="meta_description" rows="5" placeholder="Add Meta Description" class="form-control" >{{blog.meta_description}}</textarea>
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div>
+
+
+                    <!-- Submit button -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Save</button>
+                    </div>
+
+                    <!-- <div class="row form-group">
+                        <div class="col-12 col-md-2">
+                            <label for="categories" class=" form-control-label">Categories : (Include ",")</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <input type="text" id="categories" name="categories" placeholder="Categories AKA Tags" class="form-control" data-role="tagsinput">
+                        </div>
+                        <div class="col col-md-1"></div>
+                    </div> -->
+
+
+
+
+                </form>
+            </div>
+
+            {% endif %}
+
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block footerblock %}
+    <!-- for tags -->
+    <script src="{% static 'back/assets/js/bootstrap-tagsinput.js' %}"></script>
+{% endblock %}
