@@ -1,0 +1,201 @@
+{% extends 'back/master_back.html' %}
+
+{% load static %}
+
+{% block headblock %}
+
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'back/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}">
+
+    <link href="{% static 'vendor/mdb/mdb.min.css' %}" rel="stylesheet">
+
+    <!-- smart photo -->
+    <link href="{% static 'back/vendors/smart-photo/smartphoto.min.css' %}" rel="stylesheet">
+
+
+    <style>
+      @media(max-width: 768px){
+        .mobile-none{
+          display: none;
+        }
+      }
+    </style>
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <!-- SM list -->
+            <div class="col-md-12">
+                <div class="card">
+
+                    <!-- message -->
+                    <div class="card-header">
+                        <strong class="card-title">↳ SM Handle List</strong>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="margin: 30px 20px 10px 20px;">
+                                        <strong>{{message}}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% elif message.tags == 'success' %}
+                                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="margin: 30px 20px 10px 20px;">
+                                        <strong>{{message}}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body">
+                        <table id="bootstrap-data-table-export" class="dataa-table table table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Index</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for author_sm in author_sm %}
+                                <tr>
+
+                                    <td class="text-center">{{forloop.counter}}</td>
+
+                                    <td class="text-center mobile-none">{{author_sm.sm_name | title}} &nbsp; <i class="{{author_sm.sm_icon}}"></i></td>
+
+                                    <td class="text-center">
+                                        <a href="{% url 'author_sm_delete' auth_pk=auth_pk auth_sm_pk=author_sm.pk %}"><button type="button" class="btn btn-danger btn-sm">Remove <i class="fa fa-times"></i></button></a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SM add -->
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <strong> Add SM Handle</strong>
+                    </div>
+
+                    <div class="card-body card-block">
+
+                        <form action="{% url 'author_sm_add' auth_pk %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            {% csrf_token %}
+        
+                            <div class="row form-group">
+                                <div class="col-12 col-md-2">
+                                    <label for="sm_name" class=" form-control-label">Name * :</label>
+                                </div>
+                                <div class="col col-md-3">
+                                    <input type="text" id="sm_name" name="sm_name" placeholder="Add Name" class="form-control" required>
+                                </div>
+                                <div class="col col-md-1"></div>
+                            </div>
+    
+                            <br>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-2">
+                                    <label for="sm_url" class=" form-control-label">Url * :</label>
+                                </div>
+                                <div class="col col-md-5">
+                                    <input type="text" id="sm_url" name="sm_url" placeholder="Add URL" class="form-control" required>
+                                </div>
+                                <div class="col col-md-1"></div>
+                            </div>
+    
+                            <br>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-2">
+                                    <label for="sm_icon" class=" form-control-label">Icon * :</label>
+                                </div>
+                                <div class="col col-md-5">
+                                    <input type="text" id="sm_icon" name="sm_icon" placeholder="Add Icon-Code" class="form-control" required>
+                                    <p>
+                                        <br>
+                                        <i class="fa fa-angle-double-right"></i> <span style="text-decoration: underline;">Fontawesome Icon-Code Guide</span><br>
+                                        <b>1.</b> Go to <a href="https://fontawesome.com/icons?d=gallery" style="color: darkturquoise;">Fontawesome.com</a><br>
+                                        <b>2.</b> Search for desired icon <br>
+                                        <b>3.</b> Tick FREE ONLY on LHS <br>
+                                        <b>4.</b> Click/Copy the Font-Code &nbsp; i.e. <b>&lt;i class="fa<span style="color: darkturquoise;">s</span> fa-amazon"&gt;&lt;/i&gt;</b><br>
+                                        <b>5.</b> If its "fas/fab/faf..." then remove the last alphabet and keep only the "fa" <br>
+                                        <b>6.</b> It should look like &nbsp; i.e. <b>&lt;i class="fa fa-amazon"&gt;&lt;/i&gt;</b><br>
+                                        <b>7.</b> Now copy the code writtern in Brackets & paste it &nbsp; i.e. <b>fa fa-amazon</b><br>
+                                        Note : Few might not work so go with an alternative
+                                    </p>
+                                </div>
+                                <div class="col col-md-1"></div>
+                            </div>
+    
+                            <br>
+        
+                            <!-- Submit button -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Add
+                                </button>
+                            </div>
+        
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footerblock %}
+    
+    <script src="{% static 'back/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'back/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'back/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'back/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+    
+    <script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'back/vendors/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'back/assets/js/init-scripts/data-table/datatables-init.js' %}"></script>
+    
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'vendor/mdb/mdb.min.js' %}"></script>
+    
+    <!-- smart photo -->
+    <script src="{% static 'back/vendors/smart-photo/smartphoto.js' %}"></script>
+    
+    <script>
+        window.addEventListener('load',function(){
+            new SmartPhoto(".js-img-viewer");
+            new SmartPhoto(".js-img-viewer-fit");
+        });
+    </script>
+    
+    <script>
+      
+    
+    </script>
+    
+{% endblock %}

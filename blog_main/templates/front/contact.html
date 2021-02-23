@@ -1,0 +1,212 @@
+{% extends 'front/master.html' %}
+
+{% load static %}
+
+
+    {% block headblock %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OSRU - News, Blog & Magazine HTML Template</title>
+    <link href="{% static 'front/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'front/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/animsition.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/themify-icons/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/bootsnav.css' %}" rel="stylesheet">
+    <link href="{% static 'front/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'front/owl-carousel/owl.theme.css' %}" rel="stylesheet">
+    <link href="{% static 'front/owl-carousel/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/fluidbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'front/css/style.css' %}" rel="stylesheet">
+    <!-- <script async src='../cdn-cgi/bm/cv/669835187/api.js'></script> -->
+
+    {% endblock %}
+
+
+
+    {% block page_content %}
+
+    <div class="parallax page_header" data-parallax-bg-image="{% static 'front/img/header-bg.jpg' %}" data-parallax-direction="left">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Contact page</h3>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Contact</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 p_r_40">
+                    <div class="contact-info">
+                        <div class="contact-address">
+                            <div class="contact-text">
+                                <h3>Contact Info</h3>
+                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                                    Hampden-Sydney College in Virginia.
+                                </p>
+                            </div>
+                            <div class="address-info">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img src="{% static 'front/img/icon/agenda.png' %}" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="addon-title">Address</h4>
+                                        <div class="addon-text"> 1355 Market Street, Suite 900<br>
+                                            San Francisco, CA 94103
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="address-info">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img src="{% static 'front/img/icon/email.png' %}" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="addon-title">Email Address</h4>
+                                        <div class="addon-text">
+                                            <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="a8dbddd8d8c7dadce8c7dbdaddc6cddfdb86cbc7c5">[email&#160;protected]</a><br>
+                                            <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="2c65424a436c435f5e5942495b5f024f4341">[email&#160;protected]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="address-info">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img src="{% static 'front/img/icon/phone.png' %}" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="addon-title">Phone Number</h4>
+                                        <div class="addon-text">Support: +123 456 789<br>
+                                            Sales: +098 765 4321
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <h3>Feedback</h3>
+                            <div class="form-group">
+                                <textarea class="form-control" id="textarea" rows="5"></textarea>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-3 col-md-2 col-form-label">Name *</label>
+                                <div class="col-sm-6 col-md-5">
+                                    <input class="form-control" id="name2" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-3 col-md-2 col-form-label">Email *</label>
+                                <div class="col-sm-6 col-md-5">
+                                    <input class="form-control" id="email2" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="website" class="col-sm-3 col-md-2 col-form-label">Website</label>
+                                <div class="col-sm-6 col-md-5">
+                                    <input class="form-control" id="website" type="text">
+                                </div>
+                            </div>
+                            <a href="#" class="btn link-btn">Submit ⇾</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 p_l_40">
+                    <div id="map" class="gmap1">
+                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5345.123288038999!2d72.544920!3d23.026383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8555e3bd1d63%3A0xf3e3e5ac0c639c2a!2sKriosk%20Creata!5e0!3m2!1sen!2sin!4v1614066010337!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="height_30"></div>
+    </div>
+
+    {% endblock %}
+
+
+
+    {% block footerblock  %}
+
+    <!-- <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
+    <script src="{% static 'front/js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/animsition.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/bootsnav.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/macy.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/imagesloaded.pkgd.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/ResizeSensor.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/theia-sticky-sidebar.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/jquery.magnific-popup.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/owl-carousel/owl.carousel.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/modernizr.custom.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/jquery.gridrotator.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/parallax-background.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/jquery.simpleSocialShare.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/jquery.fluidbox.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/retina.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/jquery.shuffle.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/readingTime.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'front/js/custom.js' %}" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcMXKkIZSG1Ev3nNkDE5vZpfT_KG9zBT8" type="text/javascript"></script>
+    <script type="text/javascript">
+        // When the window has finished loading create our google map below
+        google.maps.event.addDomListener(window, 'load', init);
+        
+        function init() {
+            // Basic options for a simple Google Map
+            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+            var mapOptions = {
+                // How zoomed in you want the map to start at (always required)
+                zoom: 15,
+                // The latitude and longitude to center the map (always required)
+                center: new google.maps.LatLng(23.026383, 72.544920), //Dhaka
+        
+                // How you would like to style the map. 
+                // This is where you would paste any style found on Snazzy Maps.
+                styles: [{"featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{"color": "#444444"}]}, {"featureType": "landscape", "elementType": "all", "stylers": [{"color": "#f2f2f2"}]}, {"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "off"}]}, {"featureType": "road", "elementType": "all", "stylers": [{"saturation": -100}, {"lightness": 45}]}, {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "simplified"}]}, {"featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{"visibility": "off"}]}, {"featureType": "transit", "elementType": "all", "stylers": [{"visibility": "off"}]}, {"featureType": "water", "elementType": "all", "stylers": [{"color": "#d17c78"}, {"visibility": "on"}]}]
+            };
+        
+            // image from external URL
+            var myIcon = '{% static "front/img/icon/marker.png" %}';
+        
+            //preparing the image so it can be used as a marker
+            //https://developers.google.com/maps/documentation/javascript/reference#Icon
+            //includes hacky fix "size" to allow for wobble
+            var catIcon = {
+                url: myIcon
+            };
+        
+            // Get the HTML DOM element that will contain your map 
+            // We are using a div with id="map" seen below in the <body>
+            var mapElement = document.getElementById('map');
+        
+            // Create the Google Map using our element and options defined above
+            var map = new google.maps.Map(mapElement, mapOptions);
+        
+            // Let's also add a marker while we're at it
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(23.8103968, 90.41256666), //Dhaka
+                map: map,
+                icon: catIcon,
+                title: 'Snazzy!',
+                animation: google.maps.Animation.DROP,
+            });
+        }
+    </script>
+    <script src="{% static 'front/js/rocket-loader.min.js' %}" data-cf-settings="bca5624b5932d4c4f15b240a-|49" defer=""></script>
+    <script type="text/javascript">(function(){window['__CF$cv$params']={r:'625f052dc94c2e2e',m:'da57b38c9120913829f4f248062db42cc7d208f3-1614063106-1800-AcIT10SEUAK2pTcDLxP25ptiDL57CCs3dX0Keg6N09J7eTejz3bYwLzg5p7GxA44z7iiIeOSOFEkeGay/QUVc99vdMXVIgcQUbPMQ2aXy7876aKIPjrmOeh1nPcRv15CHUZ5IMtJgp3Fmy5dkOb2AAw=',s:[0x2839da8224,0xfbe171ef84],}})();</script>
+
+    {% endblock %}

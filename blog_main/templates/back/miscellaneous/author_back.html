@@ -55,12 +55,21 @@
                     <strong class="card-title">Author-Profile List</strong>
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="margin-top: 30px;">
-                                <strong> {{message}} </strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                            {% if message.tags == 'error' %}
+                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="margin: 30px 20px 10px 20px;">
+                                    <strong>{{message}}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% elif message.tags == 'success' %}
+                                <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="margin: 30px 20px 10px 20px;">
+                                    <strong>{{message}}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 </div>
@@ -87,6 +96,7 @@
                                 <td class="text-center">
 
                                     <a href="{% url 'author_edit' auth_pk=author_back.pk %}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> Edit</button></a>
+                                    <a href="{% url 'author_sm_back' auth_pk=author_back.pk %}"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-share-alt"></i>&nbsp; Add SM</button></a>
                                     <a href="#"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#author_{{author_back.pk}}">Del  <i class="fa fa-times"></i></button></a>
 
                                     <!-- Delete Confirm -->

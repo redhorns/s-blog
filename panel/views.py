@@ -584,7 +584,7 @@ def newsletter_back(request) :
         'newsletter': newsletter,
     }
 
-    return render(request, 'back/newsletter_back.html', send)
+    return render(request, 'back/miscellaneous/newsletter_back.html', send)
 
 
 def newsletter_delete(request, news_pk) :
@@ -776,6 +776,79 @@ def author_delete(request, auth_pk):
 
     return redirect('author_list')
 
+
+# Social Media Add
+
+def author_sm_back(request, auth_pk) :
+
+    try :
+        author_back = Author.objects.get(pk=auth_pk)
+    except :
+        msg = "Something went wrong!"
+        messages.error(request, msg)
+
+        return redirect('author_back')
+
+    author_sm = Author_SM.objects.filter(fk=author_back)
+
+    send = {
+        'author_sm': author_sm,
+        'auth_pk': auth_pk,
+    }
+
+    return render(request, 'back/miscellaneous/author_sm_back.html', send)
+
+def author_sm_add(request, auth_pk) :
+
+    if request.method == 'POST' :
+        try :
+            author_back = Author.objects.get(pk=auth_pk)
+        except :
+            msg = "Something went wrong!"
+            messages.error(request, msg)
+
+            return redirect('author_back')
+
+        sm_name = request.POST.get('sm_name')
+        sm_url = request.POST.get('sm_url')
+        sm_icon = request.POST.get('sm_icon')
+
+        author_sm = Author_SM(
+            fk = author_back,
+            sm_name = sm_name,
+            sm_url = sm_url,
+            sm_icon = sm_icon,
+
+        )
+
+        author_sm.save()
+
+        msg = "Social Media handle added successfully !"
+        messages.success(request, msg)
+
+
+        return redirect('author_sm_back', auth_pk)
+
+    return redirect('author_sm_back', auth_pk)
+
+
+
+def author_sm_delete(request, auth_pk, auth_sm_pk) :
+
+    try :
+        author_sm = Author_SM.objects.get(pk=auth_sm_pk)
+    except :
+        msg = "Something went wrong!"
+        messages.error(request, msg)
+
+        return redirect('author_sm_back', auth_pk)
+
+    author_sm.delete()
+
+    msg = "Social Media handle removed from the list successfully !"
+    messages.success(request, msg)
+
+    return redirect('author_sm_back', auth_pk)
 
 
 # def blog_section_delete(request, page_name_w) :

@@ -30,6 +30,12 @@ def detail(request) :
 
 
 
+def contact(request) :
+
+    return render(request, 'front/contact.html')
+
+
+
 def newsletter(request) :
 
     if request.method == 'POST' :

@@ -33,6 +33,9 @@ urlpatterns = [
     url(r"^panel/author-profile/add/$", views.author_add, name="author_add"),
     url(r"^panel/author-profile/edit/(?P<auth_pk>\d+)/$", views.author_edit, name="author_edit"),
     url(r"^panel/author-profile/delete/(?P<auth_pk>\d+)/$", views.author_delete, name="author_delete"),
-
+    # sm
+    url(r"^panel/author-sm/list/(?P<auth_pk>\d+)/$", views.author_sm_back, name="author_sm_back"),
+    url(r"^panel/author-sm/add/(?P<auth_pk>\d+)/$", views.author_sm_add, name="author_sm_add"),
+    url(r"^panel/author-sm/delete/(?P<auth_pk>\d+)/(?P<auth_sm_pk>\d+)/$", views.author_sm_delete, name="author_sm_delete"),
 
 ]
